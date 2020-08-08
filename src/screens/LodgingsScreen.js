@@ -1,14 +1,19 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { Button } from 'react-native-paper';
+import { View, Text, ScrollView } from 'react-native';
+import { useQuery } from '@apollo/client';
+import { GET_LODGINGS } from '../graphql/queries';
 
-const LodgingsScreen = (props) => {
+const LodgingsScreen = () => {
+  const { loading, error, data } = useQuery(GET_LODGINGS);
+
   return (
     <View>
       <Text>Alojamientos</Text>
-      <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
-        Press me
-      </Button>
+      <ScrollView>
+        {data && data.lodgings.map((item, idx) => {
+            return <Text key={idx}> {item.name}</Text>
+          })}
+      </ScrollView>
     </View>
   );
 };
