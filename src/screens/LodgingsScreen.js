@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
+import { Title } from 'react-native-paper';
 import { useQuery } from '@apollo/client';
 import { GET_LODGINGS } from '../graphql/queries';
 
@@ -8,7 +9,7 @@ const LodgingsScreen = () => {
 
   return (
     <View>
-      <Text>Alojamientos</Text>
+      <Title>Alojamientos</Title>
       <ScrollView>
         {data && data.lodgings.map((item, idx) => {
             return <Text key={idx}> {item.name}</Text>

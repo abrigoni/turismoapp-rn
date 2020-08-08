@@ -1,4 +1,25 @@
-import { DefaultTheme } from 'react-native-paper';
+import { DefaultTheme, configureFonts,} from 'react-native-paper';
+
+const fontConfig = {
+  default: {
+    regular: {
+      fontFamily: 'Roboto-Regular',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'Roboto-Medium',
+      fontWeight: 'normal',
+    },
+    light: {
+      fontFamily: 'Roboto-Light',
+      fontWeight: 'normal',
+    },
+    thin: {
+      fontFamily: 'Roboto-Thin',
+      fontWeight: 'normal',
+    },
+  },
+};
 
 const theme = {
   ...DefaultTheme,
@@ -10,6 +31,7 @@ const theme = {
     text: '#1F2234',
     disabled: '#CACAD8'
   },
+  fonts: configureFonts(fontConfig)
 };
 
 export default theme;
