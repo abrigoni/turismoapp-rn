@@ -8,6 +8,7 @@ const GET_LODGINGS = gql`
       address
       lat 
       lng 
+      picture
       location {
         id 
         name 
@@ -15,6 +16,7 @@ const GET_LODGINGS = gql`
       category {
         id 
         stars 
+        value
       }
       classification {
         id 
@@ -32,6 +34,7 @@ const GET_GASTRONOMICS = gql`
       address
       lat 
       lng 
+      picture
       location {
         id 
         name
