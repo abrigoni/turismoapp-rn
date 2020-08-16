@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import DarkOverlay from './DarkOverlay';
 
-const LodgingCard = ({ lodging }) => {
+const LodgingCard = ({ lodging, onPress }) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => onPress(lodging)}>
       <DarkOverlay picture={lodging.picture}>
         <View style={styles.cardContainer}>
           <View style={styles.titleSection}>
@@ -40,5 +40,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "white",
   }
-})
+});
+
 export default LodgingCard;

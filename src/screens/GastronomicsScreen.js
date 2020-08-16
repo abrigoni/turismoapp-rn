@@ -6,7 +6,7 @@ import { GET_GASTRONOMICS } from '../graphql/queries';
 /* components */
 import GastronomicCard from '../components/GastronomicCard';
 
-const GastronomicsScreen = () => {
+const GastronomicsScreen = ({navigation}) => {
   const { loading, error, data } = useQuery(GET_GASTRONOMICS);
   const activeFilters = true;
   const [search, setSearch] = useState('');
@@ -15,6 +15,10 @@ const GastronomicsScreen = () => {
     setSearch(search);
   };
   
+  const navigateToGastronomicDetail = (gastronomic) => {
+    navigation.navigate('Gastronomic-Detail', {gastronomic})
+  };
+
   return (
     <View>
       <Text>Gastronomicos</Text>
@@ -32,7 +36,7 @@ const GastronomicsScreen = () => {
         {data && <FlatList
           data={data.gastronomics}
           keyExtractor = { (item, index) => index.toString() }
-          renderItem={({ item }) => <GastronomicCard gastronomic={item} />}
+          renderItem={({ item }) => <GastronomicCard gastronomic={item} onPress={navigateToGastronomicDetail}/>}
         />}
         
       </View>

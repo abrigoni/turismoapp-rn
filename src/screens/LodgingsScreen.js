@@ -6,13 +6,17 @@ import { GET_LODGINGS } from '../graphql/queries';
 /* components */
 import LodgingCard from '../components/LodgingCard';
 
-const LodgingsScreen = () => {
+const LodgingsScreen = ({navigation}) => {
   const { loading, error, data } = useQuery(GET_LODGINGS);
   const activeFilters = true;
   const [search, setSearch] = useState('');
 
   const updateSearch = (search) => {
     setSearch(search);
+  };
+
+  const navigateToLodgingDetail = (lodging) => {
+    navigation.navigate('Lodging-Detail', {lodging})
   };
 
   return (
@@ -32,7 +36,7 @@ const LodgingsScreen = () => {
         {data && <FlatList
           data={data.lodgings}
           keyExtractor = { (item, index) => index.toString() }
-          renderItem={({ item }) => <LodgingCard lodging={item} />}
+          renderItem={({ item }) => <LodgingCard lodging={item} onPress={navigateToLodgingDetail}/>}
         />}
         
       </View>

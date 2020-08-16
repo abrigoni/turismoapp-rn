@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import DarkOverlay from './DarkOverlay';
 
 
-const GastronomicCard = ({ gastronomic }) => {
+const GastronomicCard = ({ gastronomic, onPress }) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => onPress(gastronomic)}>
       <DarkOverlay picture={gastronomic.picture}>
         <View style={styles.cardContainer}>
           <Text style={styles.cardTitle}>{gastronomic.name}</Text>
