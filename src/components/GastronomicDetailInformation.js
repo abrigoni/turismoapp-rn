@@ -5,7 +5,6 @@ import EstablishmentLocationMap from './EstablishmentLocationMap';
 
 const GastronomicDetailInformation = ({ gastronomic }) => {
   const { specialities, activities, address, lat, lng } = gastronomic;
-  console.log(specialities);
   return (
     <View style={styles.container}>
       <Text style={styles.sectionText}>Especialidades</Text>
