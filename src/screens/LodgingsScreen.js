@@ -20,7 +20,7 @@ const LodgingsScreen = ({ navigation }) => {
   };
 
   const handleNavigationToLodgingMap = () => {
-    navigation.navigate('Lodgings-Maps', { lodgings: data.lodgings, position: null});
+    navigation.navigate('Lodgings-Map', { lodgings: data.lodgings, position: null});
   }
 
   return (

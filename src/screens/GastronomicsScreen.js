@@ -20,7 +20,8 @@ const GastronomicsScreen = ({ navigation }) => {
   };
 
   const handleNavigationToGastronomicMap = () => {
-    navigation.navigate('Gastronomic-Detail', { gastronomics: data.gastronomics, position: null});
+    console.log(data.gastronomics);
+    navigation.navigate('Gastronomics-Map', { gastronomics: data.gastronomics, position: null});
   };
 
   return (

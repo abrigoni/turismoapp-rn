@@ -12,7 +12,7 @@ const LodgingNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen name="Lodgings" component={LodgingsScreen} />
       <Stack.Screen name="Lodging-Detail" component={LodgingDetailScreen} />
-      <Stack.Screen name="Lodgings-Maps" component={LodgingsMapScreen} />
+      <Stack.Screen name="Lodgings-Map" component={LodgingsMapScreen} />
     </Stack.Navigator>
   );
 };

@@ -10,8 +10,8 @@ const LodgingsMapScreen = ({route}) => {
       style={styles.map}
       provider={PROVIDER_GOOGLE}
       region={{
-        latitude: -54.8064,
-        longitude: -68.305,
+        latitude: position ? position.lat : -54.8064 ,
+        longitude: position ? position.lng : -68.305,
         latitudeDelta: 0.0111,
         longitudeDelta: 0.0111
       }}
