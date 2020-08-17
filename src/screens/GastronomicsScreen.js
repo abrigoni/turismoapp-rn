@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
-import { SearchBar} from 'react-native-elements';
+import { SearchBar, Icon } from 'react-native-elements';
 import { useQuery } from '@apollo/client';
 import { GET_GASTRONOMICS } from '../graphql/queries';
 /* components */
 import GastronomicCard from '../components/GastronomicCard';
 
-const GastronomicsScreen = ({navigation}) => {
+const GastronomicsScreen = ({ navigation }) => {
   const { loading, error, data } = useQuery(GET_GASTRONOMICS);
   const activeFilters = true;
   const [search, setSearch] = useState('');
@@ -14,20 +14,40 @@ const GastronomicsScreen = ({navigation}) => {
   const updateSearch = (search) => {
     setSearch(search);
   };
-  
+
   const navigateToGastronomicDetail = (gastronomic) => {
-    navigation.navigate('Gastronomic-Detail', {gastronomic})
+    navigation.navigate('Gastronomic-Detail', { gastronomic })
+  };
+
+  const handleNavigationToGastronomicMap = () => {
+    navigation.navigate('Gastronomic-Detail', { gastronomics: data.gastronomics, position: null});
   };
 
   return (
     <View>
       <Text>Gastronomicos</Text>
-      <SearchBar
-        lightTheme
-        placeholder="Buscar"
-        value={search}
-        onChangeText={updateSearch}
-      />
+      <View style={styles.row}>
+        <Icon
+          name="map"
+          type="material"
+          size={30}
+          color="#4A5BEA"
+          onPress={handleNavigationToGastronomicMap}
+        />
+        <SearchBar
+          lightTheme
+          placeholder="Buscar"
+          value={search}
+          onChangeText={updateSearch}
+          containerStyle={styles.container}
+        />
+        <Icon
+          name="filter"
+          type="material"
+          size={30}
+          color="#4A5BEA"
+        />
+      </View>
       {activeFilters && <Text>Filtrado por: </Text>}
 
       <View style={styles.flatList}>
@@ -35,10 +55,9 @@ const GastronomicsScreen = ({navigation}) => {
 
         {data && <FlatList
           data={data.gastronomics}
-          keyExtractor = { (item, index) => index.toString() }
-          renderItem={({ item }) => <GastronomicCard gastronomic={item} onPress={navigateToGastronomicDetail}/>}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <GastronomicCard gastronomic={item} onPress={navigateToGastronomicDetail} />}
         />}
-        
       </View>
     </View>
   );
@@ -54,7 +73,14 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-  }
+  },
+  row: {
+    paddingHorizontal: 10,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
 });
 
 export default GastronomicsScreen;
