@@ -8,6 +8,8 @@ const LodgingDetailScreen = ({ route }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { lodging } = route.params;
   const buttons = ['Información', 'Recuerdos'];
+  const isFavorite = true; 
+
   return (
     <ScrollView style={styles.container}>
       <ImageBackground
@@ -17,16 +19,18 @@ const LodgingDetailScreen = ({ route }) => {
       >
         <View style={styles.imageContent}>
           <View style={styles.imageTextContainer}>
-            <Text style={styles.lodgingName}>{lodging.name}</Text>
-            <View style={styles.locationInfo}>
-              <Icon
-                name="location-on"
-                type="material"
-                color="white"
-              />
-              <Text style={styles.locationText}>{lodging.location.name}</Text>
+            <View>
+              <Text style={styles.lodgingName}>{lodging.name}</Text>
+              <View style={styles.locationInfo}>
+                <Icon
+                  name="location-on"
+                  type="material"
+                  color="white"
+                />
+                <Text style={styles.locationText}>{lodging.location.name}</Text>
+              </View>
             </View>
-
+            <Icon style={styles.favoriteIcon} size={35} type="material" name={isFavorite ? "favorite" : "favorite-border"} color={isFavorite ? "#e74c3c" : "white"} />
           </View>
         </View>
       </ImageBackground>
@@ -68,6 +72,10 @@ const styles = StyleSheet.create({
     height: 60,
     width: "100%",
     paddingLeft: 20,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
   },
   lodgingName: {
     fontWeight: "bold",
@@ -82,6 +90,9 @@ const styles = StyleSheet.create({
     color: "white",
     paddingLeft: 10,
     fontSize: 18
+  },
+  favoriteIcon: {
+    marginRight: 20,
   }
 });
 
