@@ -1,4 +1,4 @@
-# Aplicacion de Turismo para la el Final de la cátedra de Taller de Nuevas Tecnologias - UNTDF
+# Aplicacion de Turismo para el Final de la cátedra de Taller de Nuevas Tecnologias - UNTDF
 
 Aplicación desarrollada en React Native para poder explorar alojamientos y establecimientos gastronomicos en forma de lista y mapa a través de una [API GraphQL](https://github.com/abrigoni/turismo-apigql).
 
