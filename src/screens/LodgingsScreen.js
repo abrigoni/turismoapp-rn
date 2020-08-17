@@ -44,7 +44,7 @@ const LodgingsScreen = ({ navigation }) => {
         />
 
         <Icon
-          name="filter"
+          name="filter-list"
           type="material"
           size={30}
           color="#4A5BEA"

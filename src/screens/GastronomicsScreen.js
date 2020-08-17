@@ -20,7 +20,6 @@ const GastronomicsScreen = ({ navigation }) => {
   };
 
   const handleNavigationToGastronomicMap = () => {
-    console.log(data.gastronomics);
     navigation.navigate('Gastronomics-Map', { gastronomics: data.gastronomics, position: null});
   };
 
@@ -43,7 +42,7 @@ const GastronomicsScreen = ({ navigation }) => {
           containerStyle={styles.container}
         />
         <Icon
-          name="filter"
+          name="filter-list"
           type="material"
           size={30}
           color="#4A5BEA"
