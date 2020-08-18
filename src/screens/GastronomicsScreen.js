@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
 import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
 import { SearchBar, Icon } from 'react-native-elements';
 import { useQuery } from '@apollo/client';
 import { GET_GASTRONOMICS } from '../graphql/queries';
-/* components */
+import { Context } from '../context/context';
 import GastronomicCard from '../components/GastronomicCard';
 
 const GastronomicsScreen = ({ navigation }) => {
   const { loading, error, data } = useQuery(GET_GASTRONOMICS);
+  const {value, setValue} = useContext(Context);
   const activeFilters = true;
   const [search, setSearch] = useState('');
-
   const updateSearch = (search) => {
     setSearch(search);
   };
@@ -26,6 +26,7 @@ const GastronomicsScreen = ({ navigation }) => {
   return (
     <View>
       <Text>Gastronomicos</Text>
+      <Text>{value.gastronomics.data[0]}</Text>
       <View style={styles.row}>
         <Icon
           name="map"
@@ -52,7 +53,6 @@ const GastronomicsScreen = ({ navigation }) => {
 
       <View style={styles.flatList}>
         {loading && <ActivityIndicator />}
-
         {data && <FlatList
           data={data.gastronomics}
           keyExtractor={(item, index) => index.toString()}

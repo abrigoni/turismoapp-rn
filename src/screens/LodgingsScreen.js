@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, {useState, useContext} from 'react';
 import { View, Text, ActivityIndicator, StyleSheet, FlatList } from 'react-native';
 import { SearchBar, Icon } from 'react-native-elements';
 import { useQuery } from '@apollo/client';
 import { GET_LODGINGS } from '../graphql/queries';
-/* components */
+import { Context } from '../context/context';
 import LodgingCard from '../components/LodgingCard';
 
 const LodgingsScreen = ({ navigation }) => {
   const { loading, error, data } = useQuery(GET_LODGINGS);
+  const {value, setValue} = useContext(Context);
   const activeFilters = true;
   const [search, setSearch] = useState('');
 
@@ -26,7 +27,7 @@ const LodgingsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>Alojamientos</Text>
-
+      <Text>{value.lodgings.data[0]}</Text>
       <View style={styles.row}>
         <Icon
           name="map"
