@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { View, Text, ActivityIndicator, StyleSheet, FlatList } from 'react-native';
 import { SearchBar, Icon } from 'react-native-elements';
 import { useQuery } from '@apollo/client';
@@ -9,8 +9,15 @@ import LodgingCard from '../components/LodgingCard';
 const LodgingsScreen = ({ navigation }) => {
   const { loading, error, data } = useQuery(GET_LODGINGS);
   const {value, setValue} = useContext(Context);
-  const activeFilters = true;
   const [search, setSearch] = useState('');
+
+
+  useEffect(() => {
+    if (data) {
+      value.lodgings.data = data.lodgings.map(x => ({...x, visible: true}) );
+      setValue({...value});
+    }
+  }, [data]);
 
   const updateSearch = (search) => {
     setSearch(search);
@@ -24,10 +31,13 @@ const LodgingsScreen = ({ navigation }) => {
     navigation.navigate('Lodgings-Map', { lodgings: data.lodgings, position: null});
   }
 
+  const handleNavigationToFilter = () => {
+    navigation.navigate('Filters', {isLodging: true});
+  };
+
   return (
     <View style={styles.container}>
       <Text>Alojamientos</Text>
-      <Text>{value.lodgings.data[0]}</Text>
       <View style={styles.row}>
         <Icon
           name="map"
@@ -49,18 +59,20 @@ const LodgingsScreen = ({ navigation }) => {
           type="material"
           size={30}
           color="#4A5BEA"
+          onPress={handleNavigationToFilter}
         />
       </View>
 
-      {activeFilters && <Text>Filtrado por: </Text>}
+      {/* {activeFilters && <Text>Filtrado por: </Text>} */}
+      <Text>Resultados: {value.lodgings.data.filter(x => x.visible).length}</Text>
 
       <View style={styles.flatList}>
         {loading && <ActivityIndicator />}
 
         {data && <FlatList
-          data={data.lodgings}
+          data={value.lodgings.data}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <LodgingCard lodging={item} onPress={navigateToLodgingDetail} />}
+          renderItem={({ item }) => (item.visible && <LodgingCard lodging={item} onPress={navigateToLodgingDetail}/>) }
         />}
 
       </View>

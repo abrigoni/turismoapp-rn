@@ -12,17 +12,25 @@ const Tab = createBottomTabNavigator();
 const App = () => {
   const [value, setValue] = useState({
     lodgings: {
-      data: ["Prueba de context"],
-      activeFilters: {}
+      data: [],
+      activeFilters: {
+        "locations": [],
+        "classifications": [],
+        "categories": []
+      }
     },
     gastronomics: {
-      data: ["Prueba de context"],
-      activeFilters: {}
+      data: [],
+      activeFilters: {
+        "locations": [],
+        "specialities": [],
+        "activities": []
+      }
     },
     favorites: {
       data: [],
     }
-  })
+  });
   return (
     <NavigationContainer>
       <Context.Provider value={{ value, setValue }}>

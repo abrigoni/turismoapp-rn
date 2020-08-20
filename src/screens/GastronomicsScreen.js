@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
 import { SearchBar, Icon } from 'react-native-elements';
 import { useQuery } from '@apollo/client';
@@ -9,8 +9,15 @@ import GastronomicCard from '../components/GastronomicCard';
 const GastronomicsScreen = ({ navigation }) => {
   const { loading, error, data } = useQuery(GET_GASTRONOMICS);
   const {value, setValue} = useContext(Context);
-  const activeFilters = true;
   const [search, setSearch] = useState('');
+  
+  useEffect(() => {
+    if (data) {
+      value.gastronomics.data = data.gastronomics.map(x => ({...x, visible: true}) );
+      setValue({...value});
+    }
+  }, [data]);
+  
   const updateSearch = (search) => {
     setSearch(search);
   };
@@ -23,10 +30,13 @@ const GastronomicsScreen = ({ navigation }) => {
     navigation.navigate('Gastronomics-Map', { gastronomics: data.gastronomics, position: null});
   };
 
+  const handleNavigationToFilter = () => {
+    navigation.navigate('Filters', {isLodging: false});
+  };
+
   return (
     <View>
       <Text>Gastronomicos</Text>
-      <Text>{value.gastronomics.data[0]}</Text>
       <View style={styles.row}>
         <Icon
           name="map"
@@ -47,16 +57,17 @@ const GastronomicsScreen = ({ navigation }) => {
           type="material"
           size={30}
           color="#4A5BEA"
+          onPress={handleNavigationToFilter}
         />
       </View>
-      {activeFilters && <Text>Filtrado por: </Text>}
-
+      {/* {activeFilters && <Text>Filtrado por: </Text>} */}
+      <Text>Resultados: {value.gastronomics.data.filter(x => x.visible).length}</Text>
       <View style={styles.flatList}>
         {loading && <ActivityIndicator />}
         {data && <FlatList
-          data={data.gastronomics}
+          data={value.gastronomics.data}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <GastronomicCard gastronomic={item} onPress={navigateToGastronomicDetail} />}
+          renderItem={({ item }) => (item.visible && <GastronomicCard gastronomic={item} onPress={navigateToGastronomicDetail} />)}
         />}
       </View>
     </View>
