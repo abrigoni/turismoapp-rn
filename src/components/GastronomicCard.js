@@ -9,7 +9,7 @@ const GastronomicCard = ({ gastronomic, onPress }) => {
       <DarkOverlay picture={gastronomic.picture}>
         <View style={styles.cardContainer}>
           <Text style={styles.cardTitle}>{gastronomic.name}</Text>
-          <Text style={styles.cardSubtitle}>{gastronomic.location.name}</Text>
+          <Text style={styles.cardSubtitle}>{gastronomic.location?.name}</Text>
           <Text style={styles.cardSubtitle}>{gastronomic.address}</Text>
         </View>
       </DarkOverlay>
