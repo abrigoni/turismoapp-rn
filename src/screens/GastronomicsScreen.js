@@ -27,7 +27,7 @@ const GastronomicsScreen = ({ navigation }) => {
   };
 
   const handleNavigationToGastronomicMap = () => {
-    navigation.navigate('Gastronomics-Map', { gastronomics: data.gastronomics, position: null });
+    navigation.navigate('Gastronomics-Map', { position: null });
   };
 
   const handleNavigationToFilter = () => {
@@ -47,6 +47,7 @@ const GastronomicsScreen = ({ navigation }) => {
     value.gastronomics.data.forEach((item) => {
       item.visible = true;
     });
+    setSearch("");
     setValue({...value});
   }
 

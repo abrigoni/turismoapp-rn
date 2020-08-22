@@ -8,7 +8,12 @@ const LodgingDetailScreen = ({ route }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { lodging } = route.params;
   const buttons = ['Información', 'Recuerdos'];
-  const isFavorite = true; 
+  const [isFavorite, setIsFavorite] = useState(false); 
+
+  const handleToggleFav = (e) => {
+    e.preventDefault();
+    setIsFavorite(!isFavorite);
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -30,7 +35,7 @@ const LodgingDetailScreen = ({ route }) => {
                 <Text style={styles.locationText}>{lodging.location.name}</Text>
               </View>
             </View>
-            <Icon style={styles.favoriteIcon} size={35} type="material" name={isFavorite ? "favorite" : "favorite-border"} color={isFavorite ? "#e74c3c" : "white"} />
+            <Icon style={styles.favoriteIcon} size={35} onPress={handleToggleFav} type="material" name={isFavorite ? "favorite" : "favorite-border"} color={isFavorite ? "#e74c3c" : "white"} />
           </View>
         </View>
       </ImageBackground>

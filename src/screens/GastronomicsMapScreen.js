@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import { Context } from '../context/context';
 
 const GastronomicsMapScreen = ({route}) => {
-  const { gastronomics, position } = route.params;
+  const { position } = route.params;
+  const { value } = useContext(Context);
+  const gastronomics = value.gastronomics.data;
   return (
     <MapView
       style={styles.map}
@@ -16,7 +19,7 @@ const GastronomicsMapScreen = ({route}) => {
       }}
       showsUserLocation
     >
-      {gastronomics.map((element, idx) => <Marker coordinate={{latitude: element.lat, longitude: element.lng}} /> )}
+      {gastronomics.map((element, idx) => (element.visible &&<Marker key={idx} coordinate={{latitude: element.lat, longitude: element.lng}} /> ) )}
     </MapView>
   );
 };
