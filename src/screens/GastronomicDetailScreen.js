@@ -6,9 +6,15 @@ import GastronomicDetailInformation from '../components/GastronomicDetailInforma
 
 const GastronomicDetailScreen = ({ route }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isFavorite, setIsFavorite] = useState(false);
   const { gastronomic } = route.params;
   const buttons = ['Información', 'Recuerdos'];
-  const isFavorite = true;
+  
+  const handleToggleFav = (e) => {
+    e.preventDefault();
+    setIsFavorite(!isFavorite);
+  };
+
   return (
     <ScrollView style={styles.container}>
       <ImageBackground
@@ -30,7 +36,7 @@ const GastronomicDetailScreen = ({ route }) => {
               </View>
             </View>
             
-            <Icon style={styles.favoriteIcon} size={35} type="material" name={isFavorite ? "favorite" : "favorite-border"} color={isFavorite ? "#e74c3c" : "white"}/>
+            <Icon style={styles.favoriteIcon} onPress={handleToggleFav} size={35} type="material" name={isFavorite ? "favorite" : "favorite-border"} color={isFavorite ? "#e74c3c" : "white"}/>
 
           </View>
         </View>
