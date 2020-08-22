@@ -28,7 +28,7 @@ const LodgingsScreen = ({ navigation }) => {
   };
 
   const handleNavigationToLodgingMap = () => {
-    navigation.navigate('Lodgings-Map', { lodgings: data.lodgings, position: null });
+    navigation.navigate('Lodgings-Map', { position: null });
   }
 
   const handleNavigationToFilter = () => {
@@ -48,6 +48,7 @@ const LodgingsScreen = ({ navigation }) => {
     value.lodgings.data.forEach((item) => {
       item.visible = true;
     });
+    setSearch("");
     setValue({ ...value });
   }
 
