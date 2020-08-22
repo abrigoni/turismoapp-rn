@@ -7,7 +7,7 @@ Aplicación desarrollada en React Native para poder explorar alojamientos y esta
 * Alojamientos
 	- [x] Listado
 	- [x] Mapa
-	- [X] Tanto el listado como el mapa deben poder filtrarse por nombre, localidad, categoria y clasificacion
+	- [x] Tanto el listado como el mapa deben poder filtrarse por nombre, localidad, categoria y clasificacion
 	- [x] Ficha del alojamiento
 	- [x] La obtencion de datos debe realizarse mediante API GraphQL
 * Establecimientos Gastronomicos
@@ -17,10 +17,10 @@ Aplicación desarrollada en React Native para poder explorar alojamientos y esta
 	- [x] Ficha del establecimiento gastronomico
 	- [x] La obtencion de datos debe realizarse mediante API GraphQL
 * Favoritos
-	- [ ] El usuario de la aplicación debe poder “guardar” como favoritos tanto alojamientos como establecimientos gastronómicos
-	- [ ] Podrán visualizarse como lista mezclada
-	- [ ] Podrán visualizarse como mapa
-	- [ ] Tanto en la lista como el mapa debe poder filtrarse por nombre
-	- [ ] Se debe poder acceder a la ficha del alojamiento o establecimiento gastronómico
+	- [x] El usuario de la aplicación debe poder “guardar” como favoritos tanto alojamientos como establecimientos gastronómicos
+	- [x] Podrán visualizarse como lista mezclada
+	- [x] Podrán visualizarse como mapa
+	- [x] Tanto en la lista como el mapa debe poder filtrarse por nombre
+	- [x] Se debe poder acceder a la ficha del alojamiento o establecimiento gastronómico
 	- [ ] Además, el usuario podrá agregar fotos tomadas con el celular o desde la galería a sus favoritos, a fin de agendarlas como recuerdos del lugar
 

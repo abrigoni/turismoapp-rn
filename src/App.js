@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import FavoritesScreen from './screens/FavoritesScreen';
 import LodgingNavigator from './navigation/LodgingNavigator';
 import GastronomicNavigator from './navigation/GastronomicNavigator';
+import FavoriteNavigator from './navigation/FavoriteNavigator';
 import { Context } from './context/context';
 
 const Tab = createBottomTabNavigator();
@@ -27,9 +27,7 @@ const App = () => {
         "activities": []
       }
     },
-    favorites: {
-      data: [],
-    }
+    favorites: []
   });
   return (
     <NavigationContainer>
@@ -55,7 +53,7 @@ const App = () => {
         >
 
           <Tab.Screen name="Lodgings" component={LodgingNavigator} />
-          <Tab.Screen name="Favorites" component={FavoritesScreen} />
+          <Tab.Screen name="Favorites" component={FavoriteNavigator} />
           <Tab.Screen name="Gastronomics" component={GastronomicNavigator} />
         </Tab.Navigator>
       </Context.Provider>

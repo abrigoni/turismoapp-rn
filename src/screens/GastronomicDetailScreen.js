@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { ScrollView, View, ImageBackground, StyleSheet } from 'react-native';
 import { Text, ButtonGroup, Icon } from 'react-native-elements';
 import GastronomicDetailInformation from '../components/GastronomicDetailInformation';
+import { Context } from '../context/context';
 
 
 const GastronomicDetailScreen = ({ route }) => {
+  const { value, setValue } = useContext(Context);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
   const { gastronomic } = route.params;
@@ -12,7 +14,14 @@ const GastronomicDetailScreen = ({ route }) => {
   
   const handleToggleFav = (e) => {
     e.preventDefault();
+    if (isFavorite) {
+      // remove
+    } else {
+      // add
+      value.favorites.push({...gastronomic, isGastronomic: true, visible: true});
+    }
     setIsFavorite(!isFavorite);
+    setValue({...value});
   };
 
   return (

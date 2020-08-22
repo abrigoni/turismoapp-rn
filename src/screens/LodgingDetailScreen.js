@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { ScrollView, View, ImageBackground, StyleSheet } from 'react-native';
 import { Text, ButtonGroup, Icon } from 'react-native-elements';
 import LodgingDetailInformation from '../components/LodgingDetailInformation';
+import { Context } from '../context/context';
 
 
 const LodgingDetailScreen = ({ route }) => {
+  const { value, setValue } = useContext(Context);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { lodging } = route.params;
   const buttons = ['Información', 'Recuerdos'];
@@ -12,7 +14,14 @@ const LodgingDetailScreen = ({ route }) => {
 
   const handleToggleFav = (e) => {
     e.preventDefault();
+    if (isFavorite) {
+      // remove
+    } else {
+      // add
+      value.favorites.push({...lodging, isGastronomic: false, visible: true });
+    }
     setIsFavorite(!isFavorite);
+    setValue({...value});
   };
 
   return (
