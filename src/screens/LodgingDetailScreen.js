@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { ScrollView, View, ImageBackground, StyleSheet } from 'react-native';
 import { Text, ButtonGroup, Icon } from 'react-native-elements';
 import LodgingDetailInformation from '../components/LodgingDetailInformation';
+import Memories from '../components/Memories';
 import { Context } from '../context/context';
 
 
@@ -10,7 +11,7 @@ const LodgingDetailScreen = ({ route }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { lodging } = route.params;
   const buttons = ['Información', 'Recuerdos'];
-  const [isFavorite, setIsFavorite] = useState(false); 
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const handleToggleFav = (e) => {
     e.preventDefault();
@@ -18,10 +19,10 @@ const LodgingDetailScreen = ({ route }) => {
       // remove
     } else {
       // add
-      value.favorites.push({...lodging, isGastronomic: false, visible: true });
+      value.favorites.push({ ...lodging, isGastronomic: false, visible: true });
     }
     setIsFavorite(!isFavorite);
-    setValue({...value});
+    setValue({ ...value });
   };
 
   return (
@@ -44,7 +45,9 @@ const LodgingDetailScreen = ({ route }) => {
                 <Text style={styles.locationText}>{lodging.location.name}</Text>
               </View>
             </View>
-            <Icon style={styles.favoriteIcon} size={35} onPress={handleToggleFav} type="material" name={isFavorite ? "favorite" : "favorite-border"} color={isFavorite ? "#e74c3c" : "white"} />
+            <View style={styles.favoriteIcon}>
+              <Icon size={35} onPress={handleToggleFav} type="material" name={isFavorite ? "favorite" : "favorite-border"} color={isFavorite ? "#e74c3c" : "white"} />
+            </View>
           </View>
         </View>
       </ImageBackground>
@@ -55,7 +58,7 @@ const LodgingDetailScreen = ({ route }) => {
         containerStyle={{ height: 40, borderRadius: 20, }}
       />
 
-      {selectedIndex === 0 ? <LodgingDetailInformation lodging={lodging} /> : <View />}
+      {selectedIndex === 0 ? <LodgingDetailInformation lodging={lodging} /> : <Memories isFavorite={isFavorite} establishment={lodging} isGastronomic={false} />}
     </ScrollView>
   );
 };

@@ -3,6 +3,7 @@ import { ScrollView, View, ImageBackground, StyleSheet } from 'react-native';
 import { Text, ButtonGroup, Icon } from 'react-native-elements';
 import GastronomicDetailInformation from '../components/GastronomicDetailInformation';
 import { Context } from '../context/context';
+import Memories from '../components/Memories';
 
 
 const GastronomicDetailScreen = ({ route }) => {
@@ -11,17 +12,17 @@ const GastronomicDetailScreen = ({ route }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const { gastronomic } = route.params;
   const buttons = ['Información', 'Recuerdos'];
-  
+
   const handleToggleFav = (e) => {
     e.preventDefault();
     if (isFavorite) {
       // remove
     } else {
       // add
-      value.favorites.push({...gastronomic, isGastronomic: true, visible: true});
+      value.favorites.push({ ...gastronomic, isGastronomic: true, visible: true });
     }
     setIsFavorite(!isFavorite);
-    setValue({...value});
+    setValue({ ...value });
   };
 
   return (
@@ -44,8 +45,9 @@ const GastronomicDetailScreen = ({ route }) => {
                 <Text style={styles.locationText}>{gastronomic.location.name}</Text>
               </View>
             </View>
-            
-            <Icon style={styles.favoriteIcon} onPress={handleToggleFav} size={35} type="material" name={isFavorite ? "favorite" : "favorite-border"} color={isFavorite ? "#e74c3c" : "white"}/>
+            <View style={styles.favoriteIcon}>
+              <Icon  onPress={handleToggleFav} size={35} type="material" name={isFavorite ? "favorite" : "favorite-border"} color={isFavorite ? "#e74c3c" : "white"} />
+            </View>
 
           </View>
         </View>
@@ -57,7 +59,7 @@ const GastronomicDetailScreen = ({ route }) => {
         containerStyle={{ height: 40, borderRadius: 20, }}
       />
 
-      {selectedIndex === 0 ? <GastronomicDetailInformation gastronomic={gastronomic} /> : <View />}
+      {selectedIndex === 0 ? <GastronomicDetailInformation gastronomic={gastronomic} /> : <Memories isFavorite={isFavorite} establishment={gastronomic} isGastronomic={true} />}
 
     </ScrollView>
   );
