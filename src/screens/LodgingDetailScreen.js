@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ScrollView, View, ImageBackground, StyleSheet } from 'react-native';
 import { Text, ButtonGroup, Icon } from 'react-native-elements';
 import LodgingDetailInformation from '../components/LodgingDetailInformation';
@@ -15,15 +15,22 @@ const LodgingDetailScreen = ({ route }) => {
 
   const handleToggleFav = (e) => {
     e.preventDefault();
+    setIsFavorite(!isFavorite);
     if (isFavorite) {
       // remove
+      const favToRemove = value.favorites.find(x => x.id === lodging.id && !x.isGastronomic);
+      value.favorites = value.favorites.filter(x => x !== favToRemove);
     } else {
       // add
       value.favorites.push({ ...lodging, isGastronomic: false, visible: true });
     }
-    setIsFavorite(!isFavorite);
+    
     setValue({ ...value });
   };
+
+  useEffect(() => {
+    setIsFavorite(value.favorites.findIndex(x => (x.id === lodging.id) && (x.isGastronomic === false) ) !== -1);
+  }, []);
 
   return (
     <ScrollView style={styles.container}>

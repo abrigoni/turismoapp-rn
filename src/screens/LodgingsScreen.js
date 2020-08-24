@@ -14,7 +14,7 @@ const LodgingsScreen = ({ navigation }) => {
 
   useEffect(() => {
     if (data) {
-      value.lodgings.data = data.lodgings.map(x => ({ ...x, visible: true }));
+      value.lodgings.data = data.lodgings.map(x => ({ ...x, visible: true, memories: [] }));
       setValue({ ...value });
     }
   }, [data]);

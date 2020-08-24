@@ -13,7 +13,7 @@ const GastronomicsScreen = ({ navigation }) => {
 
   useEffect(() => {
     if (data) {
-      value.gastronomics.data = data.gastronomics.map(x => ({ ...x, visible: true }));
+      value.gastronomics.data = data.gastronomics.map(x => ({ ...x, visible: true, memories: []}));
       setValue({ ...value });
     }
   }, [data]);

@@ -22,5 +22,5 @@ Aplicación desarrollada en React Native para poder explorar alojamientos y esta
 	- [x] Podrán visualizarse como mapa
 	- [x] Tanto en la lista como el mapa debe poder filtrarse por nombre
 	- [x] Se debe poder acceder a la ficha del alojamiento o establecimiento gastronómico
-	- [ ] Además, el usuario podrá agregar fotos tomadas con el celular o desde la galería a sus favoritos, a fin de agendarlas como recuerdos del lugar
+	- [x] Además, el usuario podrá agregar fotos tomadas con el celular o desde la galería a sus favoritos, a fin de agendarlas como recuerdos del lugar
 
