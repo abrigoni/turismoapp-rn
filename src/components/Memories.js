@@ -2,19 +2,22 @@ import React, { useContext } from 'react';
 import { ScrollView, View, StyleSheet, Text } from 'react-native';
 import ImagePickerBottomSheet from './ImagePickerBottomSheet';
 import { Context } from '../context/context';
+import Memory from './Memory';
 
 export default function ({ isFavorite, establishment, isGastronomic }) {
-  const {value, setValue} = useContext(Context);
+  const { value, setValue } = useContext(Context);
 
 
-  const removeImage = () => {
-    //@todo
+  const removeImage = (memory) => {
+    let est = isGastronomic ? value.gastronomics.data.find(x => x.id === establishment.id) : value.lodgings.data.find(x => x.id === establishment.id);
+    est.memories = est.memories.filter(x => x.fileName !== memory.fileName);
+    setValue({...value});
   };
 
   const saveImage = (image) => {
     let est = isGastronomic ? value.gastronomics.data.find(x => x.id === establishment.id) : value.lodgings.data.find(x => x.id === establishment.id);
     est.memories.push(image);
-    setValue({...value});
+    setValue({ ...value });
   };
 
   const renderMemories = () => {
@@ -23,7 +26,7 @@ export default function ({ isFavorite, establishment, isGastronomic }) {
     return (
       <View style={styles.gallery}>
         {establishment.memories.map((element, idx) => (
-          <Text key={idx}>{element.fileName}</Text>
+          <Memory key={idx} image={element} onRemove={removeImage} />
         ))}
       </View>
     );
@@ -32,7 +35,7 @@ export default function ({ isFavorite, establishment, isGastronomic }) {
   const renderIsFav = () => {
     return (
       <View>
-        <ImagePickerBottomSheet handleImageSave={saveImage}/>
+        <ImagePickerBottomSheet handleImageSave={saveImage} />
         {renderMemories()}
       </View>
     );
@@ -55,10 +58,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   gallery: {
+    marginTop: 15,
     display: "flex",
+    flexDirection: "row",
     alignItems: "center",
     marginBottom: 15,
     flexWrap: "wrap",
-    marginHorizontal: 20,
   }
 });
