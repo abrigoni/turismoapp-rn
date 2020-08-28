@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ScrollView, View, StyleSheet, Text } from 'react-native';
 import ImagePickerBottomSheet from './ImagePickerBottomSheet';
 import { Context } from '../context/context';
@@ -6,7 +6,6 @@ import Memory from './Memory';
 
 export default function ({ isFavorite, establishment, isGastronomic }) {
   const { value, setValue } = useContext(Context);
-
 
   const removeImage = (memory) => {
     let est = isGastronomic ? value.gastronomics.data.find(x => x.id === establishment.id) : value.lodgings.data.find(x => x.id === establishment.id);
