@@ -24,3 +24,16 @@ Aplicación desarrollada en React Native para poder explorar alojamientos y esta
 	- [x] Se debe poder acceder a la ficha del alojamiento o establecimiento gastronómico
 	- [x] Además, el usuario podrá agregar fotos tomadas con el celular o desde la galería a sus favoritos, a fin de agendarlas como recuerdos del lugar
 
+
+* Revision Profesor: 
+
+	- [x] Mejorar la interfaz de filtros
+	- [ ] Desde el mapa ir a la ficha
+	- [x] Persistir recuerdos y favoritos
+
+* Preparar la presentación. Documento a Entregar: 
+	- [ ] Caratula: nombre apellido, catedra, UNTDF, año
+	- [ ] Enunciado del TP
+	- [ ] Explicar tecnologías utilizadas
+	- [ ] Links a los repositorios
+	- [ ] Anexo la presentación

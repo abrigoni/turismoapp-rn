@@ -26,7 +26,6 @@ const App = () => {
   async function getFavs() {
     const favsStorage = await AsyncStorage.getItem('Favoritos');
     const favs = JSON.parse(favsStorage);
-    console.log(favs?.length);
     setValue({...value, favorites: favs ?? []});
   }
 

@@ -1,12 +1,27 @@
-import React, { useContext } from 'react';
+import React, {  useState, useContext, useEffect  } from 'react';
 import { StyleSheet } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { Context } from '../context/context';
+import Geolocation from '@react-native-community/geolocation';
 
 const FavoritesMapScreen = ({ route }) => {
-  const { position } = route.params;
   const { value } = useContext(Context);
   const { favorites } = value;
+  const [position, setPosition] = useState({
+    lat: -54.8064,
+    lng: -68.305,
+  });
+
+  function getUserLocation() {
+    Geolocation.getCurrentPosition(info => {
+      setPosition({...position, lat: info.coords.latitude, lng: info.coords.longitude});
+    });
+  } 
+
+  useEffect(() => {
+    getUserLocation();
+  }, []);
+  
   return (
     <MapView
       style={styles.map}

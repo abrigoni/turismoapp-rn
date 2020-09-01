@@ -50,7 +50,6 @@ const FavoritesScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Text>Favoritos</Text>
       <View style={styles.row}>
         <Icon
           name="map"
