@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { ScrollView, View, ImageBackground, StyleSheet } from 'react-native';
+import { ScrollView, View, ImageBackground, StyleSheet, AsyncStorage } from 'react-native';
 import { Text, ButtonGroup, Icon } from 'react-native-elements';
 import GastronomicDetailInformation from '../components/GastronomicDetailInformation';
 import { Context } from '../context/context';
@@ -24,8 +24,14 @@ const GastronomicDetailScreen = ({ route }) => {
       // add
       value.favorites.push({ ...gastronomic, isGastronomic: true, visible: true });
     }
+    updateStorage();
     setValue({ ...value });
   };
+
+  async function updateStorage() {
+    await AsyncStorage.removeItem('Favoritos');
+    await AsyncStorage.setItem('Favoritos', JSON.stringify(value.favorites));
+  }
 
   useEffect(() => {
     setIsFavorite(value.favorites.findIndex(x => (x.id === gastronomic.id) && (x.isGastronomic)) !== -1);

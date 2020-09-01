@@ -10,10 +10,10 @@ const Stack = createStackNavigator();
 const LodgingNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Lodgings" component={LodgingsScreen} />
-      <Stack.Screen name="Lodging-Detail" component={LodgingDetailScreen} />
-      <Stack.Screen name="Lodgings-Map" component={LodgingsMapScreen} />
-      <Stack.Screen name="Filters" component={FiltersScreen} />
+      <Stack.Screen name="Alojamientos" component={LodgingsScreen} />
+      <Stack.Screen name="Ficha Alojamiento" component={LodgingDetailScreen} />
+      <Stack.Screen name="Alojamientos - Mapa" component={LodgingsMapScreen} />
+      <Stack.Screen name="Filtros - Alojamientos" component={FiltersScreen} />
     </Stack.Navigator>
   );
 };

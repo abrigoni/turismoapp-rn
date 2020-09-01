@@ -5,6 +5,8 @@ import { useQuery } from '@apollo/client';
 import { GET_GASTRONOMICS } from '../graphql/queries';
 import { Context } from '../context/context';
 import GastronomicCard from '../components/GastronomicCard';
+import ActiveFilters from '../components/ActiveFilters';
+
 
 const GastronomicsScreen = ({ navigation }) => {
   const { loading, error, data } = useQuery(GET_GASTRONOMICS);
@@ -23,15 +25,15 @@ const GastronomicsScreen = ({ navigation }) => {
   };
 
   const navigateToGastronomicDetail = (gastronomic) => {
-    navigation.navigate('Gastronomic-Detail', { gastronomic })
+    navigation.navigate('Ficha Gastronomico', { gastronomic })
   };
 
   const handleNavigationToGastronomicMap = () => {
-    navigation.navigate('Gastronomics-Map', { position: null });
+    navigation.navigate('Gastronomicos - Mapa', { position: null });
   };
 
   const handleNavigationToFilter = () => {
-    navigation.navigate('Filters', { isLodging: false });
+    navigation.navigate('Filtros - Gastronomicos', { isLodging: false });
   };
 
   const handleSearch = (e) => {
@@ -48,12 +50,12 @@ const GastronomicsScreen = ({ navigation }) => {
       item.visible = true;
     });
     setSearch("");
+    value.gastronomics.activeFilters = [];
     setValue({...value});
   }
 
   return (
     <View>
-      <Text>Gastronomicos</Text>
       <View style={styles.row}>
         <Icon
           name="map"
@@ -85,9 +87,8 @@ const GastronomicsScreen = ({ navigation }) => {
           onPress={handleNavigationToFilter}
         />
       </View>
-      {/* {activeFilters && <Text>Filtrado por: </Text>} */}
-      <Text>Resultados: {value.gastronomics.data.filter(x => x.visible).length}</Text>
-      <Text onPress={handleClear}>Borrar filtros</Text>
+      <ActiveFilters data={value.gastronomics.activeFilters} handleClear={handleClear} results={value.gastronomics.data.filter(x => x.visible).length} />
+
       <View style={styles.flatList}>
         {loading && <ActivityIndicator />}
         {value.gastronomics.data && <FlatList

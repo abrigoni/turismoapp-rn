@@ -10,10 +10,10 @@ const Stack = createStackNavigator();
 const GastronomicNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Gastronomics" component={GastronomicsScreen}/>
-      <Stack.Screen name="Gastronomic-Detail" component={GastronomicDetailScreen}/>
-      <Stack.Screen name="Gastronomics-Map" component={GastronomicsMapScreen} />
-      <Stack.Screen name="Filters" component={FiltersScreen} />
+      <Stack.Screen name="Gastronomicos" component={GastronomicsScreen}/>
+      <Stack.Screen name="Ficha Gastronomico" component={GastronomicDetailScreen}/>
+      <Stack.Screen name="Gastronomicos - Mapa" component={GastronomicsMapScreen} />
+      <Stack.Screen name="Filtros - Gastronomicos" component={FiltersScreen} />
     </Stack.Navigator>
   );
 };

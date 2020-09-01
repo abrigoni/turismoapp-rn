@@ -11,10 +11,10 @@ const Stack = createStackNavigator();
 const FavoriteNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Favorites" component={FavoritesScreen}/>
-      <Stack.Screen name="Favorites-Map" component={FavoritesMapScreen} />
-      <Stack.Screen name="Gastronomic-Detail" component={GastronomicDetailScreen}/>
-      <Stack.Screen name="Lodging-Detail" component={LodgingDetailScreen} />
+      <Stack.Screen name="Favoritos" component={FavoritesScreen}/>
+      <Stack.Screen name="Favoritos - Mapa" component={FavoritesMapScreen} />
+      <Stack.Screen name="Ficha Gastronomico" component={GastronomicDetailScreen}/>
+      <Stack.Screen name="Ficha Alojamiento" component={LodgingDetailScreen} />
     </Stack.Navigator>
   );
 };

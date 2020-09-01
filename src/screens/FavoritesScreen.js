@@ -31,15 +31,15 @@ const FavoritesScreen = ({navigation}) => {
   }
 
   const navigateToLodgingDetail = (lodging) => {
-    navigation.navigate('Lodging-Detail', { lodging })
+    navigation.navigate('Ficha Alojamiento', { lodging })
   };
 
   const handleNavigationToFavoriteMap = () => {
-    navigation.navigate('Favorites-Map', { position: null });
+    navigation.navigate('Favoritos - Mapa', { position: null });
   };
 
   const navigateToGastronomicDetail = (gastronomic) => {
-    navigation.navigate('Gastronomic-Detail', { gastronomic })
+    navigation.navigate('Ficha Gastronomico', { gastronomic })
   };
 
   const renderItem = ({item}) => {
@@ -78,7 +78,7 @@ const FavoritesScreen = ({navigation}) => {
       </View>
 
       {/* {activeFilters && <Text>Filtrado por: </Text>} */}
-      <Text>Resultados: {value.favorites.filter(x => x.visible).length}</Text>
+      <Text>Resultados: {value.favorites && value.favorites.filter(x => x.visible).length}</Text>
       <Text onPress={handleClear}>Borrar filtros</Text>
       <View style={styles.flatList}>
 

@@ -5,12 +5,12 @@ import { useQuery } from '@apollo/client';
 import { GET_LODGINGS } from '../graphql/queries';
 import { Context } from '../context/context';
 import LodgingCard from '../components/LodgingCard';
+import ActiveFilters from '../components/ActiveFilters';
 
 const LodgingsScreen = ({ navigation }) => {
   const { loading, error, data } = useQuery(GET_LODGINGS);
   const { value, setValue } = useContext(Context);
   const [search, setSearch] = useState('');
-
 
   useEffect(() => {
     if (data) {
@@ -24,15 +24,15 @@ const LodgingsScreen = ({ navigation }) => {
   };
 
   const navigateToLodgingDetail = (lodging) => {
-    navigation.navigate('Lodging-Detail', { lodging })
+    navigation.navigate('Ficha Alojamiento', { lodging })
   };
 
   const handleNavigationToLodgingMap = () => {
-    navigation.navigate('Lodgings-Map', { position: null });
+    navigation.navigate('Alojamientos - Mapa', { position: null });
   }
 
   const handleNavigationToFilter = () => {
-    navigation.navigate('Filters', { isLodging: true });
+    navigation.navigate('Filtros - Alojamientos', { isLodging: true });
   };
 
   const handleSearch = (e) => {
@@ -49,12 +49,12 @@ const LodgingsScreen = ({ navigation }) => {
       item.visible = true;
     });
     setSearch("");
+    value.lodgings.activeFilters = [];
     setValue({ ...value });
   }
 
   return (
     <View style={styles.container}>
-      <Text>Alojamientos</Text>
       <View style={styles.row}>
         <Icon
           name="map"
@@ -88,9 +88,8 @@ const LodgingsScreen = ({ navigation }) => {
         />
       </View>
 
-      {/* {activeFilters && <Text>Filtrado por: </Text>} */}
-      <Text>Resultados: {value.lodgings.data.filter(x => x.visible).length}</Text>
-      <Text onPress={handleClear}>Borrar filtros</Text>
+      <ActiveFilters data={value.lodgings.activeFilters} handleClear={handleClear} results={value.lodgings.data.filter(x=>x.visible).length} />
+      
       <View style={styles.flatList}>
         {loading && <ActivityIndicator />}
 

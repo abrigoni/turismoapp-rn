@@ -12,14 +12,14 @@ const FiltersScreen = ({ navigation, route }) => {
   const { loading, data, error } = useQuery(isLodging ? GET_LODGINGS_FILTERS : GET_GASTRONOMICS_FILTERS);
   const [ filters, setFilters ] = useState({
     lodgings: {
-      "locations": [],
-      "classifications": [],
-      "categories": []
+      locations: [],
+      classifications: [],
+      categories: []
     },
     gastronomics: {
-      "locations": [],
-      "specialities": [],
-      "activities": []
+      locations: [],
+      specialities: [],
+      activities: []
     },
   });
 
@@ -49,7 +49,8 @@ const FiltersScreen = ({ navigation, route }) => {
 
   const handleFilter = () => {
     if (isLodging) {
-      value.lodgings.activeFilters = filters;
+      const { locations, classifications, categories } = filters.lodgings;
+      value.lodgings.activeFilters = [].concat(locations, classifications, categories);
       value.lodgings.data.forEach(x => {
         if (
           filters.lodgings.locations.includes(x.location.name) ||
@@ -62,7 +63,8 @@ const FiltersScreen = ({ navigation, route }) => {
       });
     }
     else {
-      value.gastronomics.activeFilters = filters;
+      const { locations, specialities, activities } = filters.gastronomics;
+      value.gastronomics.activeFilters = [].concat(locations, specialities, activities);
       value.gastronomics.data.forEach(x => {
         if (
           filters.gastronomics.locations.includes(x.location?.name) ||
@@ -75,6 +77,7 @@ const FiltersScreen = ({ navigation, route }) => {
           x.visible = false;
       });
     }
+    
     setValue({...value});
     navigation.goBack();
   };
