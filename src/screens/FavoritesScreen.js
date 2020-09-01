@@ -1,11 +1,12 @@
-import React, {useContext, useState} from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet, FlatList } from 'react-native';
 import { SearchBar, Icon } from 'react-native-elements';
 import { Context } from '../context/context';
 import LodgingCard from '../components/LodgingCard';
 import GastronomicCard from '../components/GastronomicCard';
+import { Button } from 'react-native-paper';
 
-const FavoritesScreen = ({navigation}) => {
+const FavoritesScreen = ({ navigation }) => {
   const { value, setValue } = useContext(Context);
   const [search, setSearch] = useState('');
 
@@ -42,9 +43,9 @@ const FavoritesScreen = ({navigation}) => {
     navigation.navigate('Ficha Gastronomico', { gastronomic })
   };
 
-  const renderItem = ({item}) => {
+  const renderItem = ({ item }) => {
     if (item.visible) {
-        return item.isGastronomic ? <GastronomicCard gastronomic={item} onPress={navigateToGastronomicDetail} /> : <LodgingCard lodging={item} onPress={navigateToLodgingDetail} /> 
+      return item.isGastronomic ? <GastronomicCard gastronomic={item} onPress={navigateToGastronomicDetail} /> : <LodgingCard lodging={item} onPress={navigateToLodgingDetail} />
     }
   };
 
@@ -77,8 +78,10 @@ const FavoritesScreen = ({navigation}) => {
       </View>
 
       {/* {activeFilters && <Text>Filtrado por: </Text>} */}
-      <Text>Resultados: {value.favorites && value.favorites.filter(x => x.visible).length}</Text>
-      <Text onPress={handleClear}>Borrar filtros</Text>
+      <View style={styles.filter}>
+        <Text>Resultados: {value.favorites && value.favorites.filter(x => x.visible).length}</Text>
+        {search.length > 0 && <Button style={styles.button} onPress={handleClear} mode="contained">Borrar busqueda</Button>}
+      </View>
       <View style={styles.flatList}>
 
         {value.favorites && <FlatList
@@ -109,6 +112,17 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+  },
+  filter: {
+    paddingHorizontal: 30,
+    paddingTop: 5,
+  },
+  button: {
+    marginTop: 10,
+    backgroundColor: "#18192F",
+    color: "white",
+    borderRadius: 6,
+    marginHorizontal: 20,
   }
 });
 export default FavoritesScreen;

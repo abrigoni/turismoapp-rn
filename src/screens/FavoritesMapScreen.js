@@ -4,7 +4,7 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { Context } from '../context/context';
 import Geolocation from '@react-native-community/geolocation';
 
-const FavoritesMapScreen = ({ route }) => {
+const FavoritesMapScreen = ({ navigation, route }) => {
   const { value } = useContext(Context);
   const { favorites } = value;
   const [position, setPosition] = useState({
@@ -21,6 +21,15 @@ const FavoritesMapScreen = ({ route }) => {
   useEffect(() => {
     getUserLocation();
   }, []);
+
+  function handleNavigationDetail(element) {
+
+    if (element.isGastronomic) {
+      navigation.navigate('Ficha Gastronomico', { gastronomic: element });
+    } else {
+      navigation.navigate('Ficha Alojamiento', { lodging: element });
+    }
+  }
   
   return (
     <MapView
@@ -34,7 +43,7 @@ const FavoritesMapScreen = ({ route }) => {
       }}
       showsUserLocation
     >
-      {favorites.map((element, idx) => (element.visible && <Marker key={idx} coordinate={{ latitude: element.lat, longitude: element.lng }}/> ) )}
+      {favorites.map((element, idx) => (element.visible && <Marker key={idx} coordinate={{ latitude: element.lat, longitude: element.lng }} pinColor="#18192F" title={element.name} onPress={() => handleNavigationDetail(element)}/> ) )}
     </MapView>
   );
 };

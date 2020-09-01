@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { Context } from '../context/context';
 import Geolocation from '@react-native-community/geolocation';
 
 
-const LodgingsMapScreen = ({ route }) => {
+const LodgingsMapScreen = ({ navigation, route}) => {
   const { value } = useContext(Context);
   const lodgings = value.lodgings.data;
   const [position, setPosition] = useState({
@@ -23,6 +23,10 @@ const LodgingsMapScreen = ({ route }) => {
     getUserLocation();
   }, []);
   
+  function handleNavigationDetail(lodging) {
+    navigation.navigate('Ficha Alojamiento', { lodging });
+  }
+
   return (
     <MapView
       style={styles.map}
@@ -35,7 +39,7 @@ const LodgingsMapScreen = ({ route }) => {
       }}
       showsUserLocation
     >
-      {lodgings.map((element, idx) => (element.visible && <Marker key={idx} coordinate={{ latitude: element.lat, longitude: element.lng }}/> ) )}
+      {lodgings.map((element, idx) => (element.visible && <Marker key={idx}  coordinate={{ latitude: element.lat, longitude: element.lng }} pinColor="#18192F" title={element.name} onPress={() => handleNavigationDetail(element)}/> ) )}
     </MapView>
   );
 };

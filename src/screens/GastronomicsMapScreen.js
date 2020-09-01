@@ -4,7 +4,7 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { Context } from '../context/context';
 import Geolocation from '@react-native-community/geolocation';
 
-const GastronomicsMapScreen = ({route}) => {
+const GastronomicsMapScreen = ({route, navigation}) => {
   const { value } = useContext(Context);
   const gastronomics = value.gastronomics.data;
   const [position, setPosition] = useState({
@@ -22,6 +22,10 @@ const GastronomicsMapScreen = ({route}) => {
     getUserLocation();
   }, []);
 
+  function handleNavigationDetail(gastronomic) {
+    navigation.navigate('Ficha Gastronomico', { gastronomic });
+  }
+
   return (
     <MapView
       style={styles.map}
@@ -34,7 +38,7 @@ const GastronomicsMapScreen = ({route}) => {
       }}
       showsUserLocation
     >
-      {gastronomics.map((element, idx) => (element.visible &&<Marker key={idx} coordinate={{latitude: element.lat, longitude: element.lng}} /> ) )}
+      {gastronomics.map((element, idx) => (element.visible &&<Marker key={idx} coordinate={{latitude: element.lat, longitude: element.lng}} title={element.name} onPress={() => handleNavigationDetail(element)} /> ) )}
     </MapView>
   );
 };

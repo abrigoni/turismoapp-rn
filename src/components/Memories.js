@@ -16,7 +16,6 @@ export default function ({ isFavorite, establishment, isGastronomic }) {
 
   const saveImage = (image) => {
     let est = value.favorites.find(x => x.id === establishment.id && isGastronomic === x.isGastronomic);
-    console.log(est);
     est.memories.push(image);
     updateStorage();
     setValue({ ...value });
