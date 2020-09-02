@@ -28,12 +28,12 @@ Aplicación desarrollada en React Native para poder explorar alojamientos y esta
 * Revision Profesor: 
 
 	- [x] Mejorar la interfaz de filtros
-	- [ ] Desde el mapa ir a la ficha
+	- [x] Desde el mapa ir a la ficha
 	- [x] Persistir recuerdos y favoritos
 
 * Preparar la presentación. Documento a Entregar: 
-	- [ ] Caratula: nombre apellido, catedra, UNTDF, año
-	- [ ] Enunciado del TP
-	- [ ] Explicar tecnologías utilizadas
-	- [ ] Links a los repositorios
-	- [ ] Anexo la presentación
+	- [x] Caratula: nombre apellido, catedra, UNTDF, año
+	- [x] Enunciado del TP
+	- [x] Explicar tecnologías utilizadas
+	- [x] Links a los repositorios
+	- [x] Anexo la presentación
