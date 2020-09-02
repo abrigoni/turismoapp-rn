@@ -38,7 +38,7 @@ const GastronomicsMapScreen = ({route, navigation}) => {
       }}
       showsUserLocation
     >
-      {gastronomics.map((element, idx) => (element.visible &&<Marker key={idx} coordinate={{latitude: element.lat, longitude: element.lng}} title={element.name} onPress={() => handleNavigationDetail(element)} /> ) )}
+      {gastronomics.map((element, idx) => (element.visible &&<Marker key={idx} pinColor="#18192F" coordinate={{latitude: element.lat, longitude: element.lng}} title={element.name} onPress={() => handleNavigationDetail(element)} /> ) )}
     </MapView>
   );
 };
