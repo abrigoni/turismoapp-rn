@@ -1,6 +1,6 @@
-# Aplicacion de Turismo para el Final de la cátedra de Taller de Nuevas Tecnologias - UNTDF
+# [ES] Aplicacion de Turismo para el Final de la cátedra de Taller de Nuevas Tecnologias - UNTDF
 
-Aplicación desarrollada en React Native para poder explorar alojamientos y establecimientos gastronomicos en forma de lista y mapa a través de una [API GraphQL](https://github.com/abrigoni/turismo-apigql).
+Aplicación desarrollada en React Native para poder explorar alojamientos y establecimientos gastronomicos en forma de lista y mapa a través de una [API GraphQL] (https://github.com/abrigoni/turismo-apigql) desarrollada en Node.js + Express.js.
 
 ## A presentar: 
 
@@ -37,3 +37,43 @@ Aplicación desarrollada en React Native para poder explorar alojamientos y esta
 	- [x] Explicar tecnologías utilizadas
 	- [x] Links a los repositorios
 	- [x] Anexo la presentación
+
+# [EN] Tourism App developed for the New Technologies Workshop - UNTDF
+
+Mobile App developed in React Native to explore gastronomic establishments and lodgings as a list or a map consuming a [GraphQL API](https://github.com/abrigoni/turismo-apigql) developed in Node.js + Express.js.
+
+## To present: 
+
+* Lodgings
+	- [x] List
+	- [x] Map
+	- [x] Both the list and map should be able to be filtered by name, location, category and classification.
+	- [x] Lodging Detail
+	- [x] The data should be queried by GraphQL
+* Gastronomic Establishments
+	- [x] List
+	- [x] Map
+	- [X] Both the list and map should be able to be filtered by name, speciality, location and activity.
+	- [x] Gastronomic Establishment Detail
+	- [x] The data should be queried by GraphQL
+* Favorites
+	- [x] The application user must be able to save as favorites both Lodgings and Gastronomic Establishments.
+	- [x] The Favorites' list should be visualized as a unique list containing both types of favorites.
+	- [x] Favorites could be also visualized in a Map.
+	- [x] Filter by name must work in the list and map.
+	- [x] By tapping on the favorite it must show the Lodging Detail or the Gastronomic Establishment Detail.
+	- [x] Also, the user could add pictures taken by their smartphone's camera or from the gallery to their favorite places to add them as memories.
+
+
+* Professor review: 
+
+	- [x] Improve filter's user interface
+	- [x] From map location go to place detail.
+	- [x] Persist memories and favorites.
+
+* Prepare presentation/slides. Documentation to hand over: 
+	- [x] Cover: name surname, subject, university name: UNTDF, year
+	- [x] Application requirements
+	- [x] Explain used technologies
+	- [x] Repositories' links
+	- [x] Link to the slides.
